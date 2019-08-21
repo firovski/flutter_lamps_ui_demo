@@ -17,12 +17,12 @@ This project is a design mock up for movie application based on :
 
 <table style={border:"none"}>
 <tr>
-<td><img src="https://github.com/firovski/Flutter-Despicable-Me-UI/blob/master/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%20X%CA%80%20-%202019-08-20%20at%2012.14.53.png" alt="Home Screen" width="400"/></td>
-<td><img src="https://github.com/firovski/Flutter-Despicable-Me-UI/blob/master/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%20X%CA%80%20-%202019-08-20%20at%2012.15.10.png" alt="Home Screen" width="400"/></td>
+<td><img src="https://github.com/firovski/flutter_lamps_ui_demo/blob/dev/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%20X%CA%80%20-%202019-08-21%20at%2015.43.12.png" alt="Home Screen" width="400"/></td>
+<td><img src="https://github.com/firovski/flutter_lamps_ui_demo/blob/dev/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%20X%CA%80%20-%202019-08-21%20at%2017.02.39.png" alt="Home Screen" width="400"/></td>
 </tr>
 <tr>
-<td><img src="https://github.com/firovski/Flutter-Despicable-Me-UI/blob/master/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%20X%CA%80%20-%202019-08-20%20at%2012.15.19.png" alt="Home Screen" width="400"/></td>
-<td><img src="https://github.com/firovski/Flutter-Despicable-Me-UI/blob/master/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%20X%CA%80%20-%202019-08-20%20at%2012.15.35.png" alt="Home Screen" width="400"/></td>
+<td><img src="https://github.com/firovski/flutter_lamps_ui_demo/blob/dev/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%20X%CA%80%20-%202019-08-21%20at%2017.02.59.png" alt="Home Screen" width="400"/></td>
+<td><img src="https://github.com/firovski/flutter_lamps_ui_demo/blob/dev/screenshots/Simulator%20Screen%20Shot%20-%20iPhone%20X%CA%80%20-%202019-08-21%20at%2017.03.06.png" alt="Home Screen" width="400"/></td>
 </tr>
 </table>
 
