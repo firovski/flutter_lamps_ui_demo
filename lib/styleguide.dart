@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AppTheme {
   static const TextStyle display1 = TextStyle(
     fontFamily: 'WorkSans',
-    color: Colors.black,
+    color: Color(0xff142626),
     fontSize: 38,
     fontWeight: FontWeight.w600,
     letterSpacing: 1.2,
@@ -37,13 +37,14 @@ class AppTheme {
     fontFamily: 'WorkSans',
     fontWeight: FontWeight.bold,
     fontSize: 24,
-    color: Colors.black26.withOpacity(0.8),
+    color: Color(0xff142626).withOpacity(0.8),
   );
   static final TextStyle menuHeadingInactive = TextStyle(
     inherit: true,
     fontFamily: 'WorkSans',
     fontWeight: FontWeight.bold,
     fontSize: 24,
-    color: Colors.grey.withOpacity(0.8),
+    color: Colors.blueGrey.withOpacity(0.6),
   );
+  static final primaryColor = const Color(0xff142626);
 }

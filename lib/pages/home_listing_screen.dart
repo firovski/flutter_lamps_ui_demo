@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_lamps_ui_demo/models/menu_items.dart';
 import 'package:flutter_lamps_ui_demo/styleguide.dart';
 import 'package:flutter_lamps_ui_demo/widgets/items_widget.dart';
 
@@ -10,6 +11,14 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   PageController _pageController;
   int currentPage = 0;
+  int currentMenu = 0;
+  bool modeState = true;
+  final List<String> catalogPath = [
+    "assets/images/lamp1.png",
+    "assets/images/lamp2.png",
+    "assets/images/lamp3.jpg",
+    "assets/images/lamp4.png",
+  ];
 
   @override
   void initState() {
@@ -68,16 +77,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    roundedContainer(),
-                    SizedBox(width: 20),
-                    roundedContainer(),
-                    SizedBox(width: 20),
-                    roundedContainer(),
-                    SizedBox(width: 20),
-                    roundedContainer(),
-                    SizedBox(width: 20),
-                    roundedContainer(),
-                    SizedBox(width: 20),
+                    for ( var i = 0; i < catalogPath
+                        .length; i++) // ignore: sdk_version_ui_as_code
+                      (currentMenu == i) ? roundedContainer(
+                          catalogPath[i], Color(0xff142626).withOpacity(0.9),
+                          Colors.white, i) : roundedContainer(
+                          catalogPath[i], Colors.white,
+                          Color(0xff142626).withOpacity(0.9), i)
                   ],
                 ),
               ),
@@ -97,56 +103,81 @@ class _HomeScreenState extends State<HomeScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
-                          RotatedBox(
-                            quarterTurns: 3,
-                            child: Column(
-                              children: <Widget>[
-                                Row(
-                                  children: <Widget>[
-                                    Column(
-                                      children: <Widget>[
-                                        Text(
-                                          "Offers",
-                                          style: AppTheme.menuHeadingActive,
-                                        ),
-                                        Icon(
-                                          Icons.brightness_1,
-                                          color:
-                                              Colors.black26.withOpacity(0.8),
-                                          size: 16,
-                                        )
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ],
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                modeState = !modeState;
+                              });
+                            },
+                            child: RotatedBox(
+                              quarterTurns: 3,
+                              child: Column(
+                                children: <Widget>[
+                                  Row(
+                                    children: <Widget>[
+                                      Column(
+                                        children: <Widget>[
+                                          Text(
+                                            "Offers",
+                                            style: modeState ? AppTheme
+                                                .menuHeadingActive : AppTheme
+                                                .menuHeadingInactive,
+                                          ),
+                                          Icon(
+                                            Icons.brightness_1,
+                                            color: modeState
+                                                ? AppTheme.primaryColor
+                                                .withOpacity(0.8)
+                                                : Colors.white,
+
+                                            size: 16,
+                                          )
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                           SizedBox(
                             height: 40,
                           ),
-                          RotatedBox(
-                            quarterTurns: 3,
-                            child: Column(
-                              children: <Widget>[
-                                Row(
-                                  children: <Widget>[
-                                    Column(
-                                      children: <Widget>[
-                                        Text(
-                                          "New Collection",
-                                          style: AppTheme.menuHeadingInactive,
-                                        ),
-                                        Icon(
-                                          Icons.brightness_1,
-                                          color: Colors.grey.withOpacity(0.8),
-                                          size: 14,
-                                        )
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ],
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                modeState = !modeState;
+                              });
+                            },
+
+                            child: RotatedBox(
+                              quarterTurns: 3,
+                              child: Column(
+                                children: <Widget>[
+                                  Row(
+                                    children: <Widget>[
+                                      Column(
+                                        children: <Widget>[
+                                          Text(
+                                            "New Collection",
+                                            style: !modeState ? AppTheme
+                                                .menuHeadingActive : AppTheme
+                                                .menuHeadingInactive,
+                                          ),
+                                          Icon(
+                                            Icons.brightness_1,
+                                            color: !modeState
+                                                ? AppTheme.primaryColor
+                                                .withOpacity(0.8)
+                                                : Colors.white,
+                                            size: 16,
+                                          )
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ],
@@ -159,10 +190,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       controller: _pageController,
                       children: <Widget>[
                         for (var i = 0; // ignore: sdk_version_ui_as_code,
-                            i < 6;
+                        i < Lamps.length;
                             i++)
                           Padding(
-                            padding: EdgeInsets.all(20),
+                            padding: const EdgeInsets.all(20.0),
                             child: Container(
                               decoration: BoxDecoration(
                                 boxShadow: [
@@ -172,15 +203,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                     blurRadius: 14.0,
                                   )
                                 ],
-                                color: Colors.blueGrey,
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(20)),
+                                BorderRadius.all(Radius.circular(20)),
                               ),
                               width: (screenWidth / 3) * 1.8,
                               child: ItemWidget(
-                                  pageController: _pageController,
-                                  currentPage: i),
+                                pageController: _pageController,
+                                currentPage: i,
+
                             ),
+
+                          ),
                           ),
                       ],
                     ),
@@ -197,25 +230,37 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget roundedContainer() {
+  Widget roundedContainer(String url, Color bgColor, Color iconColor,
+      int index) {
     return GestureDetector(
-      onTap: () {},
-      child: Material(
-        color: Colors.transparent,
-        elevation: 8,
-        child: Container(
-          width: 80,
-          height: 80,
-          decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                color: Colors.green,
-                offset: Offset(0, 12.0),
-                blurRadius: 14.0,
-              )
-            ],
-            color: Colors.blueGrey,
-            borderRadius: BorderRadius.all(Radius.circular(20)),
+      onTap: () {
+        setState(() {
+          currentMenu = index;
+        });
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(right: 20.0),
+        child: Material(
+          color: Colors.transparent.withOpacity(0),
+          child: Container(
+            width: 80,
+            height: 80,
+            decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Color(0xff147226).withOpacity(0.8),
+                  offset: Offset(0, 8.0),
+                  blurRadius: 8.0,
+                )
+              ],
+              color: bgColor,
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Image(image: AssetImage(url),
+                  color: iconColor),
+            ),
           ),
         ),
       ),

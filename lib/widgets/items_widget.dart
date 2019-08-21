@@ -1,13 +1,15 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_lamps_ui_demo/models/menu_items.dart';
 import 'package:flutter_lamps_ui_demo/styleguide.dart';
 
 class ItemWidget extends StatelessWidget {
   final PageController pageController;
   final int currentPage;
 
-  const ItemWidget({Key key, this.pageController, this.currentPage})
+
+  const ItemWidget({Key key, this.pageController, this.currentPage,})
       : super(key: key);
 
   @override
@@ -51,8 +53,9 @@ class ItemWidget extends StatelessWidget {
                 ),*/
 
                   Image(
-                    image: AssetImage('assets/images/lamp.jpg'),
-                    fit: BoxFit.fitHeight,
+                    image: AssetImage(Lamps[currentPage].imagePath
+                    ),
+                    fit: BoxFit.fill,
                   ),
                   Stack(
                     children: <Widget>[
@@ -64,7 +67,7 @@ class ItemWidget extends StatelessWidget {
                           children: <Widget>[
                             Container(
                               child: Text(
-                                "Chandelier",
+                                Lamps[currentPage].name,
                                 style: AppTheme.heading,
                               ),
                             ),
@@ -84,7 +87,7 @@ class ItemWidget extends StatelessWidget {
                                   children: <Widget>[
                                     Container(
                                       child: Text(
-                                        "£ 39.99",
+                                        Lamps[currentPage].price,
                                         style: AppTheme.subHeading,
                                       ),
                                     ),
