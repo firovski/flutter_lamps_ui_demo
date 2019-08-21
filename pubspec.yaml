@@ -57,4 +57,10 @@ flutter:
   fonts:
     - family: WorkSans
       fonts:
-        - asset: assets/fonts/Concetta-Kalvani-Serif-Block.ttf
+        - asset: assets/fonts/WorkSans-Regular.ttf
+        - asset: assets/fonts/WorkSans-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/WorkSans-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/WorkSans-Bold.ttf
+          weight: 700
