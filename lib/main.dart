@@ -11,15 +11,13 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primarySwatch: Colors.blueGrey,
-          primaryColor: Colors.white,
+          primaryColor: Color(0xff142626),
           canvasColor: Colors.white,
-          appBarTheme: AppBarTheme(
-              elevation: 0,
-              color: Colors.white
-          )
+          appBarTheme: AppBarTheme(elevation: 0, color: Colors.white)),
+      home: DefaultTabController(
+        length: 4,
+        child: HomeScreen(),
       ),
-
-      home: HomeScreen(),
     );
   }
 }

@@ -14,8 +14,8 @@ class _HomeScreenState extends State<HomeScreen> {
   int currentMenu = 0;
   bool modeState = true;
   final List<String> catalogPath = [
-    "assets/images/lamp1.png",
     "assets/images/lamp2.png",
+    "assets/images/lamp1.png",
     "assets/images/lamp3.jpg",
     "assets/images/lamp4.png",
   ];
@@ -49,6 +49,35 @@ class _HomeScreenState extends State<HomeScreen> {
           )
         ],
       ),
+      bottomNavigationBar: Material(
+        shape: RoundedRectangleBorder(
+            borderRadius: new BorderRadius.circular(30.0)),
+        color: Color(0xff142626),
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 30.0),
+          child: new TabBar(
+            tabs: [
+              Tab(
+                icon: new Icon(Icons.home),
+              ),
+              Tab(
+                icon: new Icon(Icons.rss_feed),
+              ),
+              Tab(
+                icon: new Icon(Icons.perm_identity),
+              ),
+              Tab(
+                icon: new Icon(Icons.settings),
+              )
+            ],
+            labelColor: Colors.white,
+            unselectedLabelColor: Colors.blueGrey.withOpacity(0.6),
+            indicatorSize: TabBarIndicatorSize.label,
+            indicatorPadding: EdgeInsets.all(5.0),
+            indicatorColor: Colors.white,
+          ),
+        ),
+      ),
       body: SafeArea(
         child: Column(
           children: <Widget>[
@@ -77,12 +106,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    for ( var i = 0; i < catalogPath
-                        .length; i++) // ignore: sdk_version_ui_as_code
-                      (currentMenu == i) ? roundedContainer(
-                          catalogPath[i], Color(0xff142626).withOpacity(0.9),
-                          Colors.white, i) : roundedContainer(
-                          catalogPath[i], Colors.white,
+                    for (var i = 0; // ignore: sdk_version_ui_as_code
+                    i < catalogPath.length;
+                    i++) // ignore: sdk_version_ui_as_code
+                      (currentMenu == i)
+                          ? roundedContainer(
+                          catalogPath[i],
+                          Color(0xff142626).withOpacity(0.9),
+                          Colors.white,
+                          i)
+                          : roundedContainer(catalogPath[i], Colors.white,
                           Color(0xff142626).withOpacity(0.9), i)
                   ],
                 ),
@@ -119,9 +152,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                         children: <Widget>[
                                           Text(
                                             "Offers",
-                                            style: modeState ? AppTheme
-                                                .menuHeadingActive : AppTheme
-                                                .menuHeadingInactive,
+                                            style: modeState
+                                                ? AppTheme.menuHeadingActive
+                                                : AppTheme.menuHeadingInactive,
                                           ),
                                           Icon(
                                             Icons.brightness_1,
@@ -129,7 +162,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 ? AppTheme.primaryColor
                                                 .withOpacity(0.8)
                                                 : Colors.white,
-
                                             size: 16,
                                           )
                                         ],
@@ -149,7 +181,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                 modeState = !modeState;
                               });
                             },
-
                             child: RotatedBox(
                               quarterTurns: 3,
                               child: Column(
@@ -160,9 +191,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                         children: <Widget>[
                                           Text(
                                             "New Collection",
-                                            style: !modeState ? AppTheme
-                                                .menuHeadingActive : AppTheme
-                                                .menuHeadingInactive,
+                                            style: !modeState
+                                                ? AppTheme.menuHeadingActive
+                                                : AppTheme.menuHeadingInactive,
                                           ),
                                           Icon(
                                             Icons.brightness_1,
@@ -210,10 +241,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: ItemWidget(
                                 pageController: _pageController,
                                 currentPage: i,
-
+                              ),
                             ),
-
-                          ),
                           ),
                       ],
                     ),
@@ -258,8 +287,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             child: Padding(
               padding: const EdgeInsets.all(15.0),
-              child: Image(image: AssetImage(url),
-                  color: iconColor),
+              child: Image(image: AssetImage(url), color: iconColor),
             ),
           ),
         ),
