@@ -2,7 +2,7 @@
 
 This is a simple UI implementation for Despicable Me Characters App in Flutter.
 This project is a design mock up for movie application based on :
-[**Design: Despicable Me Characters**](https://dribbble.com/shots/6923261-Interior-Shop-Mobile-App-Design)
+[**Interior Shop Mobile App Design**](https://dribbble.com/shots/6923261-Interior-Shop-Mobile-App-Design)
 
 
 
