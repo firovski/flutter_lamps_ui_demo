@@ -1,15 +1,17 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_lamps_ui_demo/models/menu_items.dart';
+import 'package:flutter_lamps_ui_demo/pages/item_details_screen.dart';
 import 'package:flutter_lamps_ui_demo/styleguide.dart';
 
 class ItemWidget extends StatelessWidget {
   final PageController pageController;
   final int currentPage;
+  final List lamps;
 
 
-  const ItemWidget({Key key, this.pageController, this.currentPage,})
+  const ItemWidget(
+      {Key key, this.pageController, this.currentPage, this.lamps,})
       : super(key: key);
 
   @override
@@ -19,12 +21,12 @@ class ItemWidget extends StatelessWidget {
 
     return InkWell(
       onTap: () {
-        /*Navigator.push(
+        Navigator.push(
             context,
             PageRouteBuilder(
                 transitionDuration: const Duration(milliseconds: 350),
                 pageBuilder: (context, _, __) =>
-                    CharacterDetailsScreen(character: character)));*/
+                    ItemDetailsScreen(item: lamps[currentPage],)));
       },
       child: AnimatedBuilder(
         animation: pageController,
@@ -53,53 +55,79 @@ class ItemWidget extends StatelessWidget {
                 ),*/
 
                   Image(
-                    image: AssetImage(Lamps[currentPage].imagePath
+                    image: AssetImage(lamps[currentPage].imagePath
                     ),
                     fit: BoxFit.fill,
                   ),
-                  Stack(
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Container(
-                              child: Text(
-                                Lamps[currentPage].name,
-                                style: AppTheme.heading,
-                              ),
-                            ),
-                            Row(
-                              children: <Widget>[
-                                Column(
-                                  children: <Widget>[
-                                    Container(
-                                      child: Text(
-                                        "Tap to Read more",
-                                        style: AppTheme.subHeading,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Column(
-                                  children: <Widget>[
-                                    Container(
-                                      child: Text(
-                                        Lamps[currentPage].price,
-                                        style: AppTheme.subHeading,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            ),
-                          ],
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Material(
+                      elevation: 2,
+                      color: Colors.transparent,
+                      child: Container(
+                        height: 70,
+                        //color: Color(0xff142626).withOpacity(0.6),
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              Colors.blueGrey.withOpacity(0.6),
+                              Color(0xff142626).withOpacity(0.8)
+                            ],
+                            begin: Alignment.topRight,
+                            end: Alignment.bottomLeft,
+                          ),
                         ),
-                      )
-                    ],
+                      ),
+                    ),
+                  ),
+                  Material(
+                    color: Colors.transparent,
+                    elevation: 20,
+                    child: Stack(
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Container(
+                                child: Text(
+                                  lamps[currentPage].name,
+                                  style: AppTheme.heading,
+                                ),
+                              ),
+                              Row(
+                                children: <Widget>[
+                                  Column(
+                                    children: <Widget>[
+                                      Container(
+                                        child: Text(
+                                          "Tap to Read more",
+                                          style: AppTheme.subHeading,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Column(
+                                    children: <Widget>[
+                                      Container(
+                                        child: Text(
+                                          lamps[currentPage].price,
+                                          style: AppTheme.subHeading,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                                mainAxisAlignment: MainAxisAlignment
+                                    .spaceBetween,
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ],
               ),

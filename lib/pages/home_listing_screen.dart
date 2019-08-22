@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_lamps_ui_demo/models/menu_items.dart';
 import 'package:flutter_lamps_ui_demo/styleguide.dart';
@@ -12,6 +14,8 @@ class _HomeScreenState extends State<HomeScreen> {
   PageController _pageController;
   int currentPage = 0;
   int currentMenu = 0;
+  List lampsContent = Lamps;
+  List lampsContentTemp = Lamps;
   bool modeState = true;
   final List<String> catalogPath = [
     "assets/images/lamp2.png",
@@ -38,6 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
         leading: Icon(
           Icons.menu,
           size: 30,
+          color: Color(0xff142626),
         ),
         actions: <Widget>[
           Padding(
@@ -45,6 +50,8 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Icon(
               Icons.shopping_basket,
               size: 30,
+              color: Color(0xff142626),
+
             ),
           )
         ],
@@ -140,6 +147,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             onTap: () {
                               setState(() {
                                 modeState = !modeState;
+                                lampsContent = lampsContentTemp;
+                                currentPage = 0;
                               });
                             },
                             child: RotatedBox(
@@ -179,6 +188,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             onTap: () {
                               setState(() {
                                 modeState = !modeState;
+                                //sublist
+                                lampsContent = new List.from(
+                                    lampsContentTemp.where((i) =>
+                                        Random.secure().nextBool()));
+                                currentPage = 0;
                               });
                             },
                             child: RotatedBox(
@@ -221,8 +235,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       controller: _pageController,
                       children: <Widget>[
                         for (var i = 0; // ignore: sdk_version_ui_as_code,
-                        i < Lamps.length;
-                            i++)
+                        i < lampsContent.length;
+                        i++)
                           Padding(
                             padding: const EdgeInsets.all(20.0),
                             child: Container(
@@ -241,6 +255,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: ItemWidget(
                                 pageController: _pageController,
                                 currentPage: i,
+                                lamps: lampsContent,
                               ),
                             ),
                           ),
@@ -261,10 +276,29 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget roundedContainer(String url, Color bgColor, Color iconColor,
       int index) {
+    List temp;
     return GestureDetector(
       onTap: () {
+        switch (index) {
+          case 0:
+            temp = Lamps;
+            break;
+          case 1:
+            temp = LampsDesck;
+            break;
+          case 2:
+            temp = Lamps;
+            break;
+          case 3:
+            temp = Lamps;
+            break;
+        }
         setState(() {
           currentMenu = index;
+          lampsContent = temp;
+          lampsContentTemp = temp;
+          currentPage = 0;
+          modeState = true;
         });
       },
       child: Padding(
@@ -277,7 +311,8 @@ class _HomeScreenState extends State<HomeScreen> {
             decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
-                  color: Color(0xff147226).withOpacity(0.8),
+                  color: Color(0xff28CF75).withOpacity(0.4),
+                  //color: Colors.lightGreenAccent.withOpacity(0.4),
                   offset: Offset(0, 8.0),
                   blurRadius: 8.0,
                 )

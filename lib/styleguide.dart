@@ -24,6 +24,13 @@ class AppTheme {
     color: Colors.white.withOpacity(0.8),
     letterSpacing: 1.2,
   );
+  static final TextStyle headingdesc = TextStyle(
+    fontFamily: 'WorkSans',
+    fontWeight: FontWeight.w600,
+    fontSize: 16,
+    color: Colors.white.withOpacity(0.8),
+    letterSpacing: 1.2,
+  );
 
   static final TextStyle subHeading = TextStyle(
     inherit: true,
@@ -46,5 +53,15 @@ class AppTheme {
     fontSize: 24,
     color: Colors.blueGrey.withOpacity(0.6),
   );
+
+  static final TextStyle buttonTextAddToBasket = TextStyle(
+    inherit: true,
+    fontFamily: 'WorkSans',
+    fontWeight: FontWeight.w600,
+    fontSize: 22,
+    color: Color(0xff142626),
+  );
+
+
   static final primaryColor = const Color(0xff142626);
 }
