@@ -7,13 +7,13 @@ class Lamp {
   Lamp(this.name, this.price, this.imagePath, this.description);
 }
 List Lamps = [
-  Lamp("Chandelier", "£19.9", "assets/images/lamp.jpg", desc),
+  Lamp("Chandelier", "£10.9", "assets/images/lamp.jpg", desc),
   Lamp("Lamp", "£19.9", "assets/images/lamp_1.jpg", desc),
-  Lamp("Mason Jar Light", "£19.9", "assets/images/lamp_2.jpg", desc),
-  Lamp("Sculptural Glass", "£19.9", "assets/images/lamp_3.jpg", desc),
-  Lamp("Lamp glass", "£19.9", "assets/images/lamp_4.jpg", desc),
-  Lamp("Nothing light", "£19.9", "assets/images/lamp_5.jpg", desc),
-  Lamp("The sun", "£19.9", "assets/images/lamp_6.jpg", desc),
+  Lamp("Mason Jar Light", "£23.9", "assets/images/lamp_2.jpg", desc),
+  Lamp("Sculptural Glass", "£159.9", "assets/images/lamp_3.jpg", desc),
+  Lamp("Lamp glass", "£9.9", "assets/images/lamp_4.jpg", desc),
+  Lamp("Nothing light", "£11.9", "assets/images/lamp_5.jpg", desc),
+  Lamp("The sun", "£3.9", "assets/images/lamp_6.jpg", desc),
 ];
 
 List LampsDesck = [

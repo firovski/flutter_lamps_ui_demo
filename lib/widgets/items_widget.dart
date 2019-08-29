@@ -1,3 +1,4 @@
+import 'dart:math' as math;
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -8,16 +9,18 @@ class ItemWidget extends StatelessWidget {
   final PageController pageController;
   final int currentPage;
   final List lamps;
+  final double offset;
 
 
   const ItemWidget(
-      {Key key, this.pageController, this.currentPage, this.lamps,})
+      {Key key, this.pageController, this.currentPage, this.lamps, this.offset,})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
+    double gauss = math.exp(-(math.pow((offset.abs() - 0.5), 2) / 0.08));
 
     return InkWell(
       onTap: () {
@@ -54,27 +57,39 @@ class ItemWidget extends StatelessWidget {
                   ),
                 ),*/
 
-                  Image(
-                    image: AssetImage(lamps[currentPage].imagePath
+                  Transform.translate(
+                    offset: Offset(-32 * gauss * offset.sign, 0),
+                    child: Hero(
+                      tag: lamps[currentPage].imagePath,
+                      child: Image(
+                        image: AssetImage(lamps[currentPage].imagePath
+                        ),
+                        fit: BoxFit.fill,
+                      ),
                     ),
-                    fit: BoxFit.fill,
                   ),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Material(
-                      elevation: 2,
-                      color: Colors.transparent,
-                      child: Container(
-                        height: 70,
-                        //color: Color(0xff142626).withOpacity(0.6),
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [
-                              Colors.blueGrey.withOpacity(0.6),
-                              Color(0xff142626).withOpacity(0.8)
-                            ],
-                            begin: Alignment.topRight,
-                            end: Alignment.bottomLeft,
+                  Transform.translate(
+                    offset: Offset(-32 * gauss * offset.sign, 0),
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Hero(
+                        tag: lamps[currentPage].price,
+                        child: Material(
+                          elevation: 2,
+                          color: Colors.transparent,
+                          child: Container(
+                            height: 70,
+                            //color: Color(0xff142626).withOpacity(0.6),
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  Colors.blueGrey.withOpacity(0.6),
+                                  Color(0xff142626).withOpacity(0.8)
+                                ],
+                                begin: Alignment.topRight,
+                                end: Alignment.bottomLeft,
+                              ),
+                            ),
                           ),
                         ),
                       ),
@@ -87,43 +102,70 @@ class ItemWidget extends StatelessWidget {
                       children: <Widget>[
                         Padding(
                           padding: const EdgeInsets.all(16.0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Container(
-                                child: Text(
-                                  lamps[currentPage].name,
-                                  style: AppTheme.heading,
+                          child: Transform.translate(
+                            offset: Offset(-32 * gauss * offset.sign, 0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Hero(
+                                  tag: 'item_title${lamps[currentPage].name}',
+                                  child: Material(
+                                    color: Colors.transparent,
+                                    child: Container(
+                                      child: Text(
+                                        lamps[currentPage].name,
+                                        style: AppTheme.heading,
+                                      ),
+                                    ),
+                                  ),
                                 ),
-                              ),
-                              Row(
-                                children: <Widget>[
-                                  Column(
+                                Transform.translate(
+                                  offset: Offset(-32 * gauss * offset.sign, 0),
+                                  child: Row(
                                     children: <Widget>[
-                                      Container(
-                                        child: Text(
-                                          "Tap to Read more",
-                                          style: AppTheme.subHeading,
-                                        ),
+                                      Column(
+                                        children: <Widget>[
+                                          Hero(
+                                            tag: 'item_desc${lamps[currentPage]
+                                                .name}',
+                                            child: Material(
+                                              color: Colors.transparent,
+                                              child: Container(
+                                                child: Text(
+                                                  "Tap to Read more",
+                                                  style: AppTheme.subHeading,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Column(
+                                        children: <Widget>[
+                                          Hero(
+                                            tag: 'price_tag${lamps[currentPage]
+                                                .price}',
+
+                                            child: Material(
+                                              color: Colors.transparent,
+                                              child: Container(
+                                                child: Text(
+                                                  lamps[currentPage].price,
+                                                  style: AppTheme.subHeading,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ],
+                                    mainAxisAlignment: MainAxisAlignment
+                                        .spaceBetween,
                                   ),
-                                  Column(
-                                    children: <Widget>[
-                                      Container(
-                                        child: Text(
-                                          lamps[currentPage].price,
-                                          style: AppTheme.subHeading,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                                mainAxisAlignment: MainAxisAlignment
-                                    .spaceBetween,
-                              ),
-                            ],
+                                ),
+                              ],
+                            ),
                           ),
                         )
                       ],
