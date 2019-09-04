@@ -20,16 +20,25 @@ class AppTheme {
   static final TextStyle heading = TextStyle(
     fontFamily: 'WorkSans',
     fontWeight: FontWeight.w600,
-    fontSize: 20,
+    fontSize: 24,
     color: Colors.white.withOpacity(0.8),
     letterSpacing: 1.2,
+  );
+  static final TextStyle headingdesc = TextStyle(
+    fontFamily: 'WorkSans',
+    fontWeight: FontWeight.w600,
+    fontSize: 16,
+    color: Colors.white.withOpacity(0.8),
+    letterSpacing: 1.0,
+    // the white space between letter, default is 0.0
+    wordSpacing: 1.0,
   );
 
   static final TextStyle subHeading = TextStyle(
     inherit: true,
     fontFamily: 'WorkSans',
     fontWeight: FontWeight.w100,
-    fontSize: 12,
+    fontSize: 14,
     color: Colors.white.withOpacity(0.8),
   );
   static final TextStyle menuHeadingActive = TextStyle(
@@ -46,5 +55,15 @@ class AppTheme {
     fontSize: 24,
     color: Colors.blueGrey.withOpacity(0.6),
   );
+
+  static final TextStyle buttonTextAddToBasket = TextStyle(
+    inherit: true,
+    fontFamily: 'WorkSans',
+    fontWeight: FontWeight.w600,
+    fontSize: 18,
+    color: Color(0xff142626),
+  );
+
+
   static final primaryColor = const Color(0xff142626);
 }

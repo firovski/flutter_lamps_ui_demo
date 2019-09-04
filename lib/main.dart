@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_lamps_ui_demo/pages/home_listing_screen.dart';
+import 'package:flutter_lamps_ui_demo/pages/dashboard_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -15,8 +15,16 @@ class MyApp extends StatelessWidget {
           canvasColor: Colors.white,
           appBarTheme: AppBarTheme(elevation: 0, color: Colors.white)),
       home: DefaultTabController(
-        length: 4,
-        child: HomeScreen(),
+        length: 3,
+        child: Stack(
+          children: <Widget>[
+            //HomeScreen(),
+            //GuillotineMenu(),
+            DashBoardScreen(),
+
+          ],
+
+        ),
       ),
     );
   }
